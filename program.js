@@ -10,7 +10,6 @@ function decimalToBinary(convertNumber) {
   return binary;
 }
 
-
 function binaryToDecimal(convertNumber) {
   let decimal = 0;
   let remainder, i = 0;
@@ -23,6 +22,29 @@ function binaryToDecimal(convertNumber) {
   return decimal;
 }
 
+function octalToDecimal(convertNumber) {
+  let octal = 0, i = 0;
+  let remainder;
+  while (convertNumber != 0) {
+    remainder = convertNumber % 10;
+    convertNumber = parseInt(convertNumber / 10);
+    octal = octal + remainder * Math.pow(8, i);
+    i++;
+  }
+  return octal;
+}
+
+function decimalToOctal(convertNumber) {
+  let decimal = 0, i = 1;
+  let remainder;
+  while (convertNumber != 0) {
+    remainder = convertNumber % 8;
+    decimal = decimal + remainder * i;
+    convertNumber = parseInt(convertNumber / 8);
+    i = i * 10;
+  }
+  return decimal;
+}
 
 
 
@@ -35,16 +57,18 @@ function main(input) {
   let convertNumber = parseInt(arrOutput[0]);
   let convertFrom = parseInt(arrOutput[1]);
   let convertTo = parseInt(arrOutput[2]);
-  decimalToBinary(convertNumber);
-  binaryToDecimal(convertNumber);
-
-
 
   if (arrOutput[1] == 10 && arrOutput[2] == 2) {
     console.log(decimalToBinary(convertNumber));
   }
   else if (arrOutput[1] == 2 && arrOutput[2] == 10) {
     console.log(binaryToDecimal(convertNumber));
+  }
+  else if (arrOutput[1] == 10 && arrOutput[2] == 8) {
+    console.log(decimalToOctal(convertNumber));
+  }
+  else if (arrOutput[1] == 8 && arrOutput[2] == 10) {
+    console.log(octalToDecimal(convertNumber));
   }
 }
 
