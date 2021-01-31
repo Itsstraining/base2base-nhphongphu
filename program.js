@@ -46,6 +46,27 @@ function decimalToOctal(convertNumber) {
   return decimal;
 }
 
+function octalToBinary(convertNumber) {
+  let octal = 0, i = 0;
+  let remainder;
+  while (convertNumber != 0) {
+    remainder = convertNumber % 10;
+    convertNumber = parseInt(convertNumber / 10);
+    octal = octal + remainder * Math.pow(8, i);
+    i++;
+  }
+  i = 1;
+  let binary = 0;
+  let remainder1;
+  while (octal != 0) {
+    remainder1 = octal % 2;
+    octal = parseInt(octal / 2);
+    binary = binary + remainder1 * i;
+    i = i * 10;
+  }
+  return binary;
+}
+
 
 
 
@@ -69,6 +90,9 @@ function main(input) {
   }
   else if (arrOutput[1] == 8 && arrOutput[2] == 10) {
     console.log(octalToDecimal(convertNumber));
+  }
+  else if (arrOutput[1] == 8 && arrOutput[2] == 2) {
+    console.log(octalToBinary(convertNumber));
   }
 }
 
